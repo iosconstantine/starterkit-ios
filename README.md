@@ -1,5 +1,6 @@
 # starterkit-ios
 Обязательный набор знаний, которыми должен обладать каждый iOS-разработчик.
+Данные темы являются переводом со сторонних ресурсов. Постепенно будет добавляться недостающий материал.
 
 ## Swift
 * [Arrays](https://github.com/iosconstantine/starterkit-ios/tree/master/Swift/Arrays)
