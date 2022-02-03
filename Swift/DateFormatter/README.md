@@ -56,7 +56,7 @@ let hour10kDateComponents = DateComponents(
  
 let hour10kDate = userCalendar.date(from: hour10kDateComponents)!
 
-// We want to extract the year, month, and day from date
+// Мы хотим извлечь год, месяц и день из даты
 let componentsFromDate = userCalendar.dateComponents([.year, .month, .day], from: hour10kDate)
 print("Year: \(componentsFromDate.year!)")
 print("Month: \(componentsFromDate.month!)")
@@ -122,8 +122,8 @@ print("“full” style: \(myFormatter.string(from: swiftUIDebutDate)).")
  Other languages
  */
 
-// We want to see as much of these languages as possible,
-// so let’s set both dateStyle and timeStyle to .full.
+// Мы хотим видеть как можно больше этих языков,
+// поэтому давайте установим для dateStyle и timeStyle значение .full
 print()
 
 myFormatter.dateStyle = .full
@@ -176,11 +176,11 @@ print("Swift’s debut date and time, EEEE, MMMM dd, yyyy' at 'h:mm a zzzz. form
  */
 print()
 
-// Let’s define the format for date strings we want to parse:
+// Давайте определим формат строки даты, который мы хотим распарсить:
 myFormatter.dateFormat = "yyyy/MM/dd hh:mm Z"
 
-// Here's a date in the specified format.
-// DateFormatter’s date(from:) method will be able to parse it.
+// Вот дата в указанном формате.
+// DateFormatter’s date(from:) метод сможет распарсить его.
 let newDate1 = myFormatter.date(from: "2019/06/03 12:08 -0700")
 print("newDate1’s value is: \(newDate1?.description ?? "nil").")
 
@@ -189,9 +189,9 @@ print("newDate1’s value is: \(newDate1?.description ?? "nil").")
  */
 print()
 
-// Let's create a Date for the start of the Stevenote
-// where the iPhone was introduced (January 9, 2007, 10:00:00 Pacific time)
-// using DateComponents.
+// Давайте создадим дату начала работы Stevenote
+// место, где был представлен iPhone (9 января 2007 г., 10:00:00 по тихоокеанскому времени)
+// используя DateComponents.
 let iPhoneStevenoteDateComponents = DateComponents(
   timeZone: TimeZone(abbreviation: "PST"),
   year: 2007,
@@ -209,21 +209,21 @@ dateMakerFormatter.calendar = userCalendar
 dateMakerFormatter.dateFormat = "MMM d, yyyy, hh:mm a zz"
 let iPadStevenoteDate = dateMakerFormatter.date(from: "Jan 27, 2010, 10:00 AM PST")!
 
-// How far apart at this date in days?
+// Разница в днях
 
 let daysBetweenStevenotes = userCalendar.dateComponents([.day],
                                                         from: iPhoneStevenoteDate,
                                                         to: iPadStevenoteDate)
 print("There were \(daysBetweenStevenotes.day!) days between the iPhone Stevenote of 2007 and the iPad Stevenote of 2010.")
 
-// In weeks?
+// В неделях
 
 let weeksBetweenStevenotes = userCalendar.dateComponents([.weekOfYear],
                                                          from: iPhoneStevenoteDate,
                                                          to: iPadStevenoteDate)
 print("There were \(weeksBetweenStevenotes.weekOfYear!) weeks between the iPhone Stevenote of 2007 and the iPad Stevenote of 2010.")
 
-// In years, months, days
+// В годах, месяцах, днях
 
 let yearsMonthsDaysHoursMinutesBetweenStevenotes = userCalendar.dateComponents(
   [.year, .month, .day, .hour, .minute],
@@ -237,34 +237,31 @@ let hours = yearsMonthsDaysHoursMinutesBetweenStevenotes.hour!
 let minutes = yearsMonthsDaysHoursMinutesBetweenStevenotes.minute!
 print("There were \(years) years, \(months) months, \(days) days, \(hours) hours, and \(minutes) minutes between the the iPhone Stevenote of 2007 and the iPad Stevenote of 2010.")
 
-/*
- Addition - what is last day of the 90 days warranty?
- */
 print()
 
-// What's the last day of a 90-day warranty that starts today?
+// Какой последний день начиная от сегодняшнего и заканчиваю 90?
 let lastDay = userCalendar.date(byAdding: .day, value: 90, to: Date())!
 print("90 days from now is: \(lastDay.description(with: Locale(identifier: "en_US")))")
 
-// What was the date 5 weeks ago?
+// Какой был день 5 недель назад?
 let fiveWeeksAgo = userCalendar.date(byAdding: .weekOfYear, value: -5, to: Date())!
 print("5 weeks ago was: \(fiveWeeksAgo.description(with: Locale(identifier: "en_US")))")
 
-// What time will it be 4 hours and 30 minutes from now?
-// First, we need to define a DateComponents struct representing
-// a time interval of 4 hours and 30 minutes
+// Сколько времени будет через 4 часа 30 минут?
+// Во-первых, нам нужно определить структуру DateComponents, представляющую
+// временной интервал 4 часа 30 минут
 var fourHoursThirtyMinutes = DateComponents()
 fourHoursThirtyMinutes.hour = 4
 fourHoursThirtyMinutes.minute = 30
 
-// Now add the interval to the Date
+// Теперь добавляем интервал к дате
 let fourHoursThirtyMinutesFromNow = userCalendar.date(
   byAdding: fourHoursThirtyMinutes,
   to: Date()
 )!
 print("4 hours and 30 minutes from now will be: \(fourHoursThirtyMinutesFromNow.description(with: Locale(identifier: "en_US")))")
 
-// What time was it 4 hours and 30 minutes ago?
+// Сколько времени было 4 часа 30 минут назад?
 var minusFourHoursThirtyMinutes = DateComponents()
 minusFourHoursThirtyMinutes.hour = -4
 minusFourHoursThirtyMinutes.minute = -30
@@ -279,8 +276,8 @@ print("4 hours and 30 minutes ago was: \(fourHoursThirtyMinutesAgo.description(w
  */
 print()
 
-// Let's define some Dates relative to the SwiftUI announcement
-// (June 3, 2019, 12:08 p.m. PDT)
+// Давайте определим некоторые даты относительно объявления SwiftUI
+// (3 июня 2019 г., 12:08 по тихоокеанскому времени)
 let swiftUIAnnouncementDateComponents = DateComponents(
   timeZone: TimeZone(abbreviation: "PDT"),
   year: 2019,
@@ -307,48 +304,48 @@ let swiftUIAnnouncementPlusThreeHours = userCalendar.date(
   to: swiftUIAnnouncement
 )!
 
-// This returns false, because when measuring time at the granularity of a SECOND,
-// swiftUIAnnouncement happens BEFORE swiftUIAnnouncementPlusOneSecond.
+// Это возвращает false, потому что при измерении времени с точностью до СЕКУНД,
+// swiftUIAnnouncement происходит ДО swiftUIAnnouncementPlusOneSecond.
 let test1 = userCalendar.compare(swiftUIAnnouncement,
                                  to: swiftUIAnnouncementPlusOneSecond,
                                  toGranularity: .second)
   == .orderedSame
 print("test1: \(test1)")
 
-// This returns true, because when measuring time at the granularity of a SECOND,
-// swiftUIAnnouncement happens BEFORE swiftUIAnnouncementPlusOneSecond.
+// Это возвращает true, потому что при измерении времени с точностью до СЕКУНД,
+// swiftUIAnnouncement происходит ДО swiftUIAnnouncementPlusOneSecond.
 let test2 = userCalendar.compare(swiftUIAnnouncement,
                                  to: swiftUIAnnouncementPlusOneSecond,
                                  toGranularity: .second)
   == .orderedAscending
 print("test2: \(test2)")
 
-// This returns true, because when measuring time at the granularity of a MINUTE,
-// swiftUIAnnouncement happens AT THE SAME TIME AS swiftUIAnnouncementPlusOneSecond.
+// Это возвращает true, потому что при измерении времени с точностью до МИНУТ,
+// swiftUIAnnouncement происходит В ТО ЖЕ ВРЕМЯ, ЧТО swiftUIAnnouncementPlusOneSecond.
 let test3 = userCalendar.compare(swiftUIAnnouncement,
                                  to: swiftUIAnnouncementPlusOneSecond,
                                  toGranularity: .minute)
   == .orderedSame
 print("test3: \(test3)")
 
-// This returns true, because when measuring time at the granularity of an HOUR,
-// swiftUIAnnouncement happens AT THE SAME TIME AS swiftUIAnnouncementPlusFiveMinutes.
+// Это возвращает true, потому что при измерении времени с точностью до ЧАСА
+// swiftUIAnnouncement происходит В ТО ЖЕ ВРЕМЯ, ЧТО swiftUIAnnouncementPlusFiveMinutes.
 let test4 = userCalendar.compare(swiftUIAnnouncement,
                                  to: swiftUIAnnouncementPlusFiveMinutes,
                                  toGranularity: .hour)
   == .orderedSame
 print("test4: \(test4)")
 
-// This returns true, because when measuring time at the granularity of a MINUTE,
-// swiftUIAnnouncementPlusFiveMinutes happens AFTER swiftUIAnnouncement.
+// Это возвращает true, потому что при измерении времени с точностью до МИНУТ,
+// swiftUIAnnouncementPlusFiveMinutes происходит ПОСЛЕ swiftUIAnnouncement.
 let test5 = userCalendar.compare(swiftUIAnnouncementPlusFiveMinutes,
                                  to: swiftUIAnnouncement,
                                  toGranularity: .minute)
   == .orderedDescending
 print("test5: \(test5)")
 
-// This returns true, because when measuring time at the granularity of a DAY,
-// swiftUIAnnouncement happens AT THE SAME TIME AS swiftUIAnnouncementPlusThreeHours.
+// Это возвращает true, потому что при измерении времени с точностью до ДНЯ
+// swiftUIAnnouncement происходит В ТО ЖЕ ВРЕМЯ, ЧТО swiftUIAnnouncementPlusThreeHours.
 let test6 = userCalendar.compare(swiftUIAnnouncement,
                                  to: swiftUIAnnouncementPlusThreeHours,
                                  toGranularity: .day)
@@ -370,7 +367,7 @@ let futureDate = Calendar.current.date(byAdding: timeInterval, to: Date())!
 print("2 months, 3 days, 4 hours, 5 minutes, and 6 seconds from now is \(futureDate.description(with: Locale(identifier: "en_US"))).")
 
 
-// Overloading + and - so that we can add and subtract DateComponents
+// Перегрузка + и -, чтобы мы могли добавлять и вычитать DateComponents
 // ==================================================================
 
 func +(_ lhs: DateComponents, _ rhs: DateComponents) -> DateComponents {
@@ -398,7 +395,7 @@ func combineComponents(_ lhs: DateComponents,
 }
 
 
-// Let's define a couple of durations of time
+// Давайте определим пару длительностей времени
 // ------------------------------------------
 
 var oneDayFiveHoursTenMinutes = DateComponents(
@@ -413,7 +410,7 @@ var threeDaysTenHoursThirtyMinutes = DateComponents(
 )
 
 
-// Now let's add and subtract them
+// Теперь добавим и вычтем их
 // -------------------------------
 
 let additionResult = oneDayFiveHoursTenMinutes + threeDaysTenHoursThirtyMinutes
@@ -425,10 +422,10 @@ print("1 day, 5 hours, and 10 minutes - 3 days, 10 hours, and 30 minutes equals:
 print("\(subtractionResult.day!) days, \(subtractionResult.hour!) hours, and \(subtractionResult.minute!) minutes.")
 
 
-// Overloading - so that we can negate DateComponents
+// Перегрузка - чтобы мы могли вычитать DateComponents
 // --------------------------------------------------
 
-// We'll need to overload unary - so we can negate components
+// Нам нужно перегрузить унарный код, чтобы мы могли инвертировать компоненты
 prefix func -(components: DateComponents) -> DateComponents {
   var result = DateComponents()
   if components.nanosecond != nil { result.nanosecond = -components.nanosecond! }
@@ -448,16 +445,16 @@ print("Negating 1 day, 5 hours, and 10 minutes turns it into:")
 print("\(negativeTime.day!) days, \(negativeTime.hour!) hours, and \(negativeTime.minute!) minutes.")
 
 
-// Overloading + and - so that we can add Dates and DateComponents
+// Перегружаем + и -, чтобы мы могли добавить Dates и DateComponents
 // and subtract DateComponents from Dates
 
-// Date + DateComponents
+// Дата + компоненты даты
 func +(_ lhs: Date, _ rhs: DateComponents) -> Date
 {
   return Calendar.current.date(byAdding: rhs, to: lhs)!
 }
 
-// DateComponents + Dates
+// Компоненты даты + даты
 func +(_ lhs: DateComponents, _ rhs: Date) -> Date
 {
   return rhs + lhs
@@ -470,40 +467,40 @@ func -(_ lhs: Date, _ rhs: DateComponents) -> Date
 }
 
 
-// What time will it be 1 day, 5 hours, and 10 minutes from now?
+// Какое время будет через 1 день, 5 часов и 10 минут?
 // -------------------------------------------------------------
 
-// Here's the standard way of finding out:
+// Вот стандартный способ узнать:
 let futureDate0 = Calendar.current.date(
   byAdding: oneDayFiveHoursTenMinutes,
   to: Date()
 )
 
-// With our overloads and function definitions, we can now do it this way:
+// Теперь с нашими перегрузками и определениями функций мы можем сделать это следующим образом:
 let futureDate1 = Date() + oneDayFiveHoursTenMinutes
 print("Date() + oneDayFiveHoursTenMinutes = \(futureDate1.description(with: Locale(identifier: "en_US")))")
 
-// This will work as well:
+// Это тоже сработает:
 let futureDate2 = oneDayFiveHoursTenMinutes + Date()
 print("oneDayFiveHoursTenMinutes + Date() = \(futureDate2.description(with: Locale(identifier: "en_US")))")
 
 
-// What time was it 3 days, 10 hours, and 30 minutes ago?
+// Сколько времени было 3 дня, 10 часов и 30 минут назад?
 // ------------------------------------------------------
 
-// Doing it the standard way takes some work
+// Стандартный способ требует некоторой работы
 var minus3Days5Hours30minutes = threeDaysTenHoursThirtyMinutes
 minus3Days5Hours30minutes.day = -threeDaysTenHoursThirtyMinutes.day!
 minus3Days5Hours30minutes.hour = -threeDaysTenHoursThirtyMinutes.hour!
 minus3Days5Hours30minutes.minute = -threeDaysTenHoursThirtyMinutes.minute!
 let pastDate0 = Calendar.current.date(byAdding: minus3Days5Hours30minutes, to: Date())
 
-// With our overloads and function definitions, it's so much easier:
+// С нашими перегрузками и определениями функций все намного проще:
 let pastDate1 = Date() - threeDaysTenHoursThirtyMinutes
 print("Date() - threeDaysTenHoursThirtyMinutes = \(pastDate1.description(with: Locale(identifier: "en_US")))")
 
 
-// Extending Date so that creating dates and debugging are simpler
+// Расширение даты, чтобы упростить создание дат и отладку
 // ===============================================================
 
 extension Date {
@@ -541,8 +538,8 @@ extension Date {
 
 }
 
-// Overloading - so that we can use it to find the difference
-// between two Dates
+// Перегрузка - чтобы мы могли использовать это, чтобы найти разницу
+// между двумя датами
 // ==========================================================
 
 func -(_ lhs: Date, _ rhs: Date) -> DateComponents
@@ -553,8 +550,8 @@ func -(_ lhs: Date, _ rhs: Date) -> DateComponents
     to: lhs)
 }
 
-// How long was it between the announcement of the original iPhone
-// and its release in the stores?
+// Сколько времени прошло между анонсом оригинального iPhone
+// и его выпуск в магазинах?
 let iPhoneReleaseDate = Date(year: 2007, month: 6, day: 27)
 
 let iPhoneWait = iPhoneReleaseDate - iPhoneStevenoteDate
@@ -566,8 +563,8 @@ print("\(iPhoneWait.year!) years, " +
   "\(iPhoneWait.hour!) hours, and " +
   "\(iPhoneWait.minute!) minutes.")
 
-// How long ago was the first moon landing, which took place
-// on July 20, 1969, 20:18 UTC?
+// Как давно состоялась первая высадка на Луну, которая состоялась
+// 20 июля 1969 г., 20:18 UTC?
 let timeSinceMoonLanding = Date() - Date(dateString: "1969-07-20 20:18:00 UTC")
 print("It’s been this long since the first moon landing: ")
 print("\(timeSinceMoonLanding.year!) years, " +
@@ -578,7 +575,7 @@ print("\(timeSinceMoonLanding.year!) years, " +
   "\(timeSinceMoonLanding.minute!) minutes.")
 
 
-// Extending Int to add some syntactic magic to date components
+// Расширение Int для добавления некоторой синтаксической магии в компоненты даты
 // ============================================================
 
 extension Int {
@@ -656,19 +653,19 @@ extension Int {
 }
 
 
-// A quick test of some future dates
+// Быстрая проверка некоторых будущих дат
 print("One hour from now is: \((Date() + 1.hour).desc)")
 print("One day from now is: \((Date() + 1.day).desc)")
 print("One week from now is: \((Date() + 1.week).desc)")
 print("One month from now is: \((Date() + 1.month).desc)")
 print("One year from now is: \((Date() + 1.year).desc)")
 
-// What was the date 10 years, 9 months, 8 days, 7 hours, and 6 minutes ago?
+// Какая дата была 10 лет, 9 месяцев, 8 дней, 7 часов и 6 минут назад?
 let aLittleWhileBack = Date() - 10.years - 9.months - 8.days - 7.hours - 6.minutes
 print("10 years, 9 months, 8 days, 7 hours, and 6 minutes ago, it was: \(aLittleWhileBack.desc)")
 
 
-// Extending DateComponents to add even more syntactic magic: fromNow and ago
+// Расширение DateComponents, чтобы добавить еще больше синтаксической магии: fromNow и ago
 // ==========================================================================
 
 extension DateComponents {
@@ -685,7 +682,7 @@ extension DateComponents {
 
 }
 
-// We’re now in Serious Syntax Magic Land!
+// Теперь мы в стране серьезного синтаксиса Magic!
 // ---------------------------------------
 
 print("2.weeks.fromNow: \(2.weeks.fromNow.desc)")
@@ -698,7 +695,7 @@ let pastDate2 = (2.months + 3.days + 4.hours + 5.minutes + 6.seconds).ago
 print("pastDate2: \(pastDate2.desc)")
 ```
 
-### Links that help
+### Полезные ссылки
 
 - [DateFormatter](https://developer.apple.com/documentation/foundation/dateformatter)
 - [Creating Dates](https://www.globalnerdy.com/2020/05/26/how-to-work-with-dates-and-times-in-swift-5-part-1-creating-and-deconstructing-dates-with-the-date-calendar-and-datecomponents-structs/)
